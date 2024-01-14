@@ -2,7 +2,12 @@
 export default {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        roboto: 'Roboto',
+        vera: 'Vera',
+      }
+    },
   },
   plugins: [],
 }
