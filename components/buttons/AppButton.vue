@@ -2,14 +2,14 @@
   <component
     :is="currentComponent"
     role="button"
-    class="rounded-[4px] inline-flex items-center gap-[4px]"
+    class="inline-flex items-center gap-[4px] p-[8px]"
     :class="[theme, size]"
     v-bind="{
       ...(to ? { to } : {}),
       ...(href ? { href } : {}),
       ...$attrs,
     }"
-    @click="$emit('onClick')"
+    @click="onClick"
   >
     <slot name="start-icon" />
     <slot />
@@ -23,7 +23,13 @@
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'secondary', 'tertiary'].includes(value);
+        return [
+          'primary',
+          'secondary',
+          'tertiary',
+          'disabled',
+          'tertiary-gray',
+        ].includes(value);
       },
     },
     size: {
@@ -33,10 +39,6 @@
         return ['small', 'medium', 'large'].includes(value);
       },
     },
-    icon: {
-      type: Object,
-      default: () => ({ icon: '', type: '' }),
-    },
     href: {
       type: String,
       default: '',
@@ -45,11 +47,9 @@
       type: Object,
       default: () => ({}),
     },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
   });
+
+  const emit = defineEmits(['onClick']);
 
   const currentComponent = computed(() => {
     if (props.href) {
@@ -60,9 +60,19 @@
       return 'button';
     }
   });
+
+  const onClick = () => {
+    if (props.disabled) {
+      return;
+    }
+    emit('onClick');
+  };
 </script>
 <style scoped>
   /* THEMES */
+  .disabled {
+    @apply bg-gray-200 text-black cursor-not-allowed;
+  }
   .primary {
     @apply bg-amber-600 text-white hover:bg-amber-500;
   }
@@ -72,14 +82,17 @@
   .tertiary {
     @apply bg-transparent text-amber-600  hover:text-amber-500;
   }
+  .tertiary-gray {
+    @apply bg-transparent text-gray-500  hover:text-gray-400 hover:bg-gray-200;
+  }
   /* SIZES */
   .small {
-    @apply px-[8px] py-[4px] text-[10px];
+    @apply text-[10px];
   }
   .medium {
-    @apply px-[12px] py-[6px] text-[12px];
+    @apply text-[12px];
   }
   .large {
-    @apply px-[16px] py-[8px] text-[14px];
+    @apply text-[14px];
   }
 </style>

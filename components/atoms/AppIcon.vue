@@ -27,7 +27,6 @@
         import.meta.glob('~/assets/icons/*/*.svg', { as: 'raw' })
       ).map(([key, value]) => {
         const filename = key.split('/').slice(-2).join('-').split('.')?.at(0);
-        console.log('filename: ', filename);
         return [filename, value];
       })
     );
