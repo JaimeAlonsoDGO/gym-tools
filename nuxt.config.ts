@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  css: ['~/assets/global.css'],
+  css: ['~/assets/css/main.css'],
   i18n: {
     locales: [
       {
@@ -25,5 +25,11 @@ export default defineNuxtConfig({
     lazy: true,
     langDir: 'lang',
     defaultLocale: 'es',
+  },
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
   },
 });
