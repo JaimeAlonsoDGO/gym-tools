@@ -7,4 +7,10 @@ export default {
     title: 'Buenos días',
     subtitle: '¡Bienvenido de vuelta!',
   },
+  actions: {
+    hide: 'Ocultar',
+    show: 'Mostrar',
+    expand: 'Expandir',
+    collapse: 'Contraer',
+  },
 };

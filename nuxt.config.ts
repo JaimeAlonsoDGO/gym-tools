@@ -8,7 +8,7 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  css: ['~/assets/css/main.css'],
+  css: ['~/assets/css/main.css', '~/assets/css/microtip.css'],
   i18n: {
     locales: [
       {

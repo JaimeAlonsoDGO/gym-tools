@@ -7,4 +7,10 @@ export default {
     title: 'Good morning',
     subtitle: 'Welcome back!',
   },
+  actions: {
+    hide: 'Hide',
+    show: 'Show',
+    expand: 'Expand',
+    collapse: 'Collapse',
+  },
 };
