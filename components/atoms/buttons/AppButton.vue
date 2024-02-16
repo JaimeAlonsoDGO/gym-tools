@@ -27,6 +27,7 @@
           'primary',
           'secondary',
           'tertiary',
+          'quaternary',
           'disabled',
           'tertiary-gray',
         ].includes(value);
@@ -44,8 +45,8 @@
       default: '',
     },
     to: {
-      type: Object,
-      default: () => ({}),
+      type: [Object, String],
+      default: '',
     },
   });
 
@@ -81,6 +82,9 @@
   }
   .tertiary {
     @apply bg-transparent text-amber-600  hover:text-amber-500;
+  }
+  .quaternary {
+    @apply bg-transparent text-amber-600  hover:text-gray-100 hover:bg-amber-500;
   }
   .tertiary-gray {
     @apply bg-transparent text-gray-500  hover:text-gray-400 hover:bg-gray-200;
