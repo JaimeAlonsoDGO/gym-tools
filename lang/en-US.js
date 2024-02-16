@@ -12,5 +12,11 @@ export default {
     show: 'Show',
     expand: 'Expand',
     collapse: 'Collapse',
+    login: 'Login',
+    logout: 'Logout',
+  },
+  sections: {
+    settings: 'Settings',
+    profile: 'Profile',
   },
 };

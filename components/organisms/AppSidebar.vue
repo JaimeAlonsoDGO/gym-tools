@@ -20,7 +20,7 @@
       data-microtip-position="right"
     >
       <AppButton
-        class="rounded-[8px] w-full"
+        class="rounded-[8px] w-full justify-center"
         theme="quaternary"
         @onClick="toggleSidebar"
       >

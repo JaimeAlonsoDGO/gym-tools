@@ -1,7 +1,7 @@
 export default {
   app: {
     appName: 'Gym Tools',
-    appDescription: 'Toda lo que necesitas en un solo lugar',
+    appDescription: 'Todo lo que necesitas en un solo lugar',
   },
   header: {
     title: 'Buenos días',
@@ -12,5 +12,11 @@ export default {
     show: 'Mostrar',
     expand: 'Expandir',
     collapse: 'Contraer',
+    login: 'Iniciar sesión',
+    logout: 'Cerrar sesión',
+  },
+  sections: {
+    settings: 'Configuraciones',
+    profile: 'Perfil',
   },
 };
