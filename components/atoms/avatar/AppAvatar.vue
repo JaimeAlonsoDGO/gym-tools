@@ -8,7 +8,7 @@
   </div>
 </template>
 <script setup>
-  import { computed } from 'vue';
+  import { computed, onMounted, ref } from 'vue';
   import useRandomTailwindBackgroundColor from '~/composables/theme/useRandomTailwindBackgroundColor.js';
 
   const props = defineProps({
@@ -33,16 +33,22 @@
     },
   });
 
+  const bgColor = ref('');
+
   const textFormatted = computed(() => {
     return props.text
       ? props.text
           .split(' ')
-          .map((word) => word[0])
+          .map((word) => word?.at(0) || '')
+          .slice(0, 2)
           .join('')
           .toUpperCase()
       : '';
   });
-  const bgColor = computed(() => useRandomTailwindBackgroundColor());
+
+  onMounted(() => {
+    bgColor.value = useRandomTailwindBackgroundColor();
+  });
 
   const emit = defineEmits(['onClick']);
   const onClick = () => {
