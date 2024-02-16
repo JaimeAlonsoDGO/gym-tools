@@ -1,8 +1,4 @@
 <template>
-    <div>
-        Hola mundo
-    </div>
+  <div></div>
 </template>
-<script setup>
-
-</script>
+<script setup></script>
