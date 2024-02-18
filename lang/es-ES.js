@@ -18,6 +18,9 @@ export default {
   systemRoutes: {
     index: 'Inicio',
     settings: 'Configuraciones',
+  },
+  settingsRoutes: {
     profile: 'Perfil',
+    appearance: 'Aspecto',
   },
 };

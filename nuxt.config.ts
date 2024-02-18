@@ -49,6 +49,14 @@ export default defineNuxtConfig({
         en: '/settings',
         es: '/configuracion',
       },
+      'settings/index/profile': {
+        en: '/settings/profile',
+        es: '/configuracion/perfil',
+      },
+      'settings/index/appearance': {
+        en: '/settings/appearance',
+        es: '/configuracion/aspecto',
+      },
     },
   },
   postcss: {

@@ -74,7 +74,9 @@
   };
 
   const isActivePath = (path) => {
-    return useRoute().fullPath === path;
+    const module = useRoute().fullPath?.split('/')?.at(2) || '';
+    const pathModule = path?.split('/')?.at(2) || '';
+    return module === pathModule || useRoute().fullPath === path;
   };
 
   const menuProps = computed(() => {
@@ -91,7 +93,7 @@
 </script>
 <style scoped>
   .main-container {
-    @apply py-[24px] px-[16px] border-r-[2px] border-gray-300 h-full flex flex-col justify-between w-[240px];
+    @apply py-[24px] px-[16px] border-r-[2px] border-gray-300 h-screen flex flex-col justify-between w-[240px];
   }
   .main-container.closed {
     @apply w-[80px];

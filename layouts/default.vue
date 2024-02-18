@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex bg-gray-100">
     <AppSidebar class="bg-white" />
-    <div class="flex-grow">
+    <div class="flex-grow h-screen">
       <AppHeader class="bg-white" />
       <slot />
     </div>

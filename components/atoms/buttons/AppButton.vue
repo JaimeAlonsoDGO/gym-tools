@@ -10,7 +10,7 @@
       ...(href ? { href } : {}),
       ...$attrs,
     }"
-    @click="onClick"
+    @click="() => onClick(props)"
   >
     <slot name="start-icon" />
     <slot />
@@ -20,6 +20,14 @@
 <script setup>
   import { computed, defineEmits } from 'vue';
   const props = defineProps({
+    id: {
+      type: [String, Number],
+      default: '',
+    },
+    text: {
+      type: String,
+      default: '',
+    },
     theme: {
       type: String,
       default: 'primary',
@@ -31,6 +39,8 @@
           'quaternary',
           'disabled',
           'tertiary-gray',
+          'tab',
+          'tab-active',
         ].includes(value);
       },
     },
@@ -93,6 +103,12 @@
   }
   .tertiary-gray {
     @apply bg-transparent text-gray-500  hover:text-gray-400 hover:bg-gray-200;
+  }
+  .tab {
+    @apply bg-transparent text-gray-500 border-b-2 border-gray-300  hover:text-amber-500 hover:border-b-amber-500;
+  }
+  .tab-active {
+    @apply text-amber-600 border-b-2 border-b-amber-600;
   }
   /* SIZES */
   .small {

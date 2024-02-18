@@ -18,7 +18,6 @@
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppAvatar from '~/components/atoms/avatar/AppAvatar.vue';
   import AppDropdown from '~/components/atoms/dropdowns/AppDropdown.vue';
-  const { locale, t } = useI18n();
 
   const userActions = ref([]);
 

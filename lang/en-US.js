@@ -18,6 +18,12 @@ export default {
   systemRoutes: {
     index: 'Home',
     settings: 'Settings',
+  },
+  settingsRoutes: {
     profile: 'Profile',
+    security: 'Security',
+    notifications: 'Notifications',
+    appearance: 'Appearance',
+    language: 'Language',
   },
 };

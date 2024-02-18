@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout class="font-roboto">
-    <NuxtPage class="font-roboto" />
+  <NuxtLayout class="font-roboto text-gray-800">
+    <NuxtPage class="font-roboto text-gray-800" />
   </NuxtLayout>
 </template>
