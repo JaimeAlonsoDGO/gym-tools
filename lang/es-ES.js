@@ -15,7 +15,8 @@ export default {
     login: 'Iniciar sesión',
     logout: 'Cerrar sesión',
   },
-  sections: {
+  systemRoutes: {
+    index: 'Inicio',
     settings: 'Configuraciones',
     profile: 'Perfil',
   },

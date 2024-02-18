@@ -3,8 +3,7 @@
     <slot>
       <AppButton
         class="text-left whitespace-nowrap w-full"
-        :theme="theme"
-        :size="size"
+        v-bind="props"
         @onClick="onClick"
       >
         <AppIcon v-if="icon" v-bind="icon" class="w-[16px] h-[16px]" />
@@ -21,10 +20,35 @@
     theme: {
       type: String,
       default: 'primary',
+      validator(value) {
+        return [
+          'primary',
+          'secondary',
+          'tertiary',
+          'quaternary',
+          'disabled',
+          'tertiary-gray',
+        ].includes(value);
+      },
     },
     size: {
       type: String,
       default: 'medium',
+    },
+    size: {
+      type: String,
+      default: 'medium',
+      validator(value) {
+        return ['small', 'medium', 'large'].includes(value);
+      },
+    },
+    href: {
+      type: String,
+      default: '',
+    },
+    to: {
+      type: [Object, String],
+      default: '',
     },
     text: {
       type: String,

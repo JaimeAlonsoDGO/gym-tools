@@ -1,4 +1,4 @@
 <template>
-  <div>Estas en casa</div>
+  <div>Estamos en la configuración</div>
 </template>
 <script setup></script>

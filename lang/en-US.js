@@ -15,7 +15,8 @@ export default {
     login: 'Login',
     logout: 'Logout',
   },
-  sections: {
+  systemRoutes: {
+    index: 'Home',
     settings: 'Settings',
     profile: 'Profile',
   },

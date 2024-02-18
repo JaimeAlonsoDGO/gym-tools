@@ -13,6 +13,7 @@
 </template>
 <script setup>
   import { onMounted, ref } from 'vue';
+  import useSystemRoutes from '~/composables/routes/useSystemRoutes.js';
   import AppButton from '~/components/atoms/buttons/AppButton.vue';
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppAvatar from '~/components/atoms/avatar/AppAvatar.vue';
@@ -22,26 +23,16 @@
   const userActions = ref([]);
 
   onMounted(() => {
-    userActions.value = [
-      {
-        text: t('sections.settings'),
-        theme: 'quaternary',
+    userActions.value = useSystemRoutes()
+      .filter((item) => item.avatarMenu)
+      .map((item) => ({
+        ...item,
         size: 'small',
+        theme: 'quaternary',
         icon: {
-          name: 'config',
+          ...item.icon,
           type: 'solid',
         },
-        onClick: () => console.log('settings'),
-      },
-      {
-        text: t('actions.logout'),
-        theme: 'quaternary',
-        size: 'small',
-        icon: {
-          name: 'logout',
-        },
-        onClick: () => console.log('logout'),
-      },
-    ];
+      }));
   });
 </script>

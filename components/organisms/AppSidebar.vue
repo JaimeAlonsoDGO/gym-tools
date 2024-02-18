@@ -13,14 +13,36 @@
       </p>
       <AppIcon name="dumbbell" type="solid" class="w-[32px] h-[32px]" />
     </div>
-    <div></div>
+    <div class="flex flex-col gap-[8px] flex-grow pt-[12px]">
+      <div
+        v-for="item in menuItems"
+        :key="item.name"
+        role="tooltip"
+        :aria-label="item.text"
+        data-microtip-position="right"
+      >
+        <AppButton
+          v-bind="item"
+          :theme="isActivePath(item.to) ? 'primary' : 'quaternary'"
+          class="rounded-[2px] w-full"
+          :class="{
+            'justify-center': closed,
+          }"
+        >
+          <AppIcon v-bind="item.icon" class="w-[24px] h-[24px]" />
+          <span v-show="!closed" class="ml-[8px]">
+            {{ item.text }}
+          </span>
+        </AppButton>
+      </div>
+    </div>
     <div
       role="tooltip"
       :aria-label="menuProps.tooltip"
       data-microtip-position="right"
     >
       <AppButton
-        class="rounded-[8px] w-full justify-center"
+        class="rounded-[2px] w-full justify-center"
         theme="quaternary"
         @onClick="toggleSidebar"
       >
@@ -34,15 +56,25 @@
   </div>
 </template>
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, onMounted } from 'vue';
   const { locale, t } = useI18n();
+  import useSystemRoutes from '~/composables/routes/useSystemRoutes.js';
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppButton from '~/components/atoms/buttons/AppButton.vue';
 
   const closed = ref(false);
+  const menuItems = ref([]);
+
+  onMounted(() => {
+    menuItems.value = useSystemRoutes().filter((item) => item.sidebar);
+  });
 
   const toggleSidebar = () => {
     closed.value = !closed.value;
+  };
+
+  const isActivePath = (path) => {
+    return useRoute().fullPath === path;
   };
 
   const menuProps = computed(() => {

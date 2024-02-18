@@ -1,8 +1,9 @@
 <template>
   <component
     :is="currentComponent"
+    :key="currentComponent"
     role="button"
-    class="inline-flex items-center gap-[4px] p-[8px]"
+    class="inline-flex items-center gap-[4px] p-[8px] select-none"
     :class="[theme, size]"
     v-bind="{
       ...(to ? { to } : {}),
@@ -17,7 +18,7 @@
   </component>
 </template>
 <script setup>
-  import { computed } from 'vue';
+  import { computed, defineEmits } from 'vue';
   const props = defineProps({
     theme: {
       type: String,
@@ -56,17 +57,21 @@
     if (props.href) {
       return 'a';
     } else if (props.to) {
-      return 'NuxtLink';
+      return 'NuxtLinkLocale';
     } else {
       return 'button';
     }
   });
 
-  const onClick = () => {
+  const onClick = (event) => {
     if (props.disabled) {
       return;
     }
-    emit('onClick');
+    emit('onClick', event);
+
+    if (currentComponent.value === 'NuxtLinkLocale') {
+      navigateTo(props.to);
+    }
   };
 </script>
 <style scoped>
