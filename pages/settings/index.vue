@@ -1,20 +1,18 @@
 <template>
-  <div class="w-full h-[calc(100vh-82px)] flex flex-col p-[16px]">
-    <AppTabs v-if="tabs.length" :tabs="tabs" :initTab="initTab" />
-    <section class="flex-grow bg-white p-[16px]">
-      <slot>
-        <NuxtPage />
-      </slot>
-    </section>
-  </div>
+  <AppWorkAreaFrame :tabs="tabs" :initTab="initTab" :header="header" />
 </template>
 <script setup>
   import { ref, onMounted } from 'vue';
+  const { t } = useI18n();
   import useSettingsRoutes from '~/composables/routes/useSettingsRoutes.js';
-  import AppTabs from '~/components/organisms/tabs/AppTabs.vue';
 
   const tabs = ref([]);
   const initTab = ref(0);
+  const header = {
+    title: t('systemRoutes.settings'),
+    description: t('screensDescriptions.settings'),
+    actions: [],
+  };
 
   onMounted(() => {
     tabs.value = useSettingsRoutes();

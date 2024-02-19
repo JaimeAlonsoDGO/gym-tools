@@ -26,4 +26,7 @@ export default {
     appearance: 'Appearance',
     language: 'Language',
   },
+  screensDescriptions: {
+    settings: 'Configure and personalize your app.',
+  },
 };

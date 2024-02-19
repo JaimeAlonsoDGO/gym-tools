@@ -23,4 +23,7 @@ export default {
     profile: 'Perfil',
     appearance: 'Aspecto',
   },
+  screensDescriptions: {
+    settings: 'Configura y personaliza la aplicación.',
+  },
 };
