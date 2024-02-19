@@ -40,6 +40,11 @@ export default defineNuxtConfig({
         name: 'Español',
       },
     ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_gym-tools',
+      redirectOn: 'root',
+    },
     pages: {
       index: {
         en: '/',

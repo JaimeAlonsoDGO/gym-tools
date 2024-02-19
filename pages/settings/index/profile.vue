@@ -1,4 +1,4 @@
 <template>
-  <div>A revisar el perfil</div>
+  <div></div>
 </template>
 <script setup></script>

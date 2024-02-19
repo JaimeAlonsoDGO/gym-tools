@@ -13,7 +13,9 @@
 </template>
 <script setup>
   import { onMounted, ref } from 'vue';
-  import useSystemRoutes from '~/composables/routes/useSystemRoutes.js';
+  import { useSystemRoutes } from '~/composables/routes/useSystemRoutes.js';
+  const localePath = useLocalePath();
+  const { t } = useI18n();
   import AppButton from '~/components/atoms/buttons/AppButton.vue';
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppAvatar from '~/components/atoms/avatar/AppAvatar.vue';
@@ -22,7 +24,7 @@
   const userActions = ref([]);
 
   onMounted(() => {
-    userActions.value = useSystemRoutes()
+    userActions.value = useSystemRoutes({ localePath, t })
       .filter((item) => item.avatarMenu)
       .map((item) => ({
         ...item,

@@ -26,4 +26,16 @@ export default {
   screensDescriptions: {
     settings: 'Configura y personaliza la aplicación.',
   },
+  appearance: {
+    appearance: 'Aspecto',
+    theme: 'Tema',
+    language: 'Idioma',
+    light: 'Claro',
+    dark: 'Oscuro',
+    system: 'Sistema',
+  },
+  languages: {
+    es: 'Español',
+    en: 'Inglés',
+  },
 };

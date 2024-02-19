@@ -29,4 +29,16 @@ export default {
   screensDescriptions: {
     settings: 'Configure and personalize your app.',
   },
+  appearance: {
+    appearance: 'Appearance',
+    theme: 'Theme',
+    language: 'Language',
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+  },
+  languages: {
+    en: 'English',
+    es: 'Español',
+  },
 };

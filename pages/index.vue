@@ -1,4 +1,4 @@
 <template>
-  <div>Estas en casa</div>
+  <div></div>
 </template>
 <script setup></script>

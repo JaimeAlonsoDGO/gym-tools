@@ -13,7 +13,10 @@
       </p>
       <AppIcon name="dumbbell" type="solid" class="w-[32px] h-[32px]" />
     </div>
-    <div class="flex flex-col gap-[8px] flex-grow pt-[12px]">
+    <div
+      v-if="menuItems.length"
+      class="flex flex-col gap-[8px] flex-grow pt-[12px]"
+    >
       <div
         v-for="item in menuItems"
         :key="item.name"
@@ -56,9 +59,10 @@
   </div>
 </template>
 <script setup>
-  import { ref, computed, onMounted } from 'vue';
+  import { ref, computed, onMounted, watch } from 'vue';
+  const localePath = useLocalePath();
   const { locale, t } = useI18n();
-  import useSystemRoutes from '~/composables/routes/useSystemRoutes.js';
+  import { useSystemRoutes } from '~/composables/routes/useSystemRoutes.js';
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppButton from '~/components/atoms/buttons/AppButton.vue';
 
@@ -66,7 +70,16 @@
   const menuItems = ref([]);
 
   onMounted(() => {
-    menuItems.value = useSystemRoutes().filter((item) => item.sidebar);
+    menuItems.value = useSystemRoutes({ localePath, t }).filter(
+      (item) => item.sidebar
+    );
+  });
+
+  watch(locale, () => {
+    menuItems.value = [];
+    menuItems.value = useSystemRoutes({ localePath, t }).filter(
+      (item) => item.sidebar
+    );
   });
 
   const toggleSidebar = () => {
@@ -74,7 +87,10 @@
   };
 
   const isActivePath = (path) => {
-    const module = useRoute().fullPath?.split('/')?.at(2) || '';
+    const route = useRoute();
+    const getRouteBaseName = useRouteBaseName();
+    const baseName = getRouteBaseName(route);
+    const module = baseName.split('-')?.at(0) || '';
     const pathModule = path?.split('/')?.at(2) || '';
     return module === pathModule || useRoute().fullPath === path;
   };

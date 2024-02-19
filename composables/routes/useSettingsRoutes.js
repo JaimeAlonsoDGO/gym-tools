@@ -1,6 +1,4 @@
-export default () => {
-  const localePath = useLocalePath();
-  const { t } = useI18n();
+export const useSettingsRoutes = ({ localePath, t }) => {
   return [
     {
       id: 1,
