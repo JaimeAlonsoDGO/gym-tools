@@ -12,13 +12,35 @@
   const header = ref({});
 
   onMounted(() => {
+    setHeader();
+
+    tabs.value = useSettingsRoutes({ localePath, t });
+
+    if (!mustRedirectOnMount()) {
+      initTab.value =
+        tabs.value.find((tab) => tab.to === useRoute().fullPath)?.id || 0;
+      return;
+    }
+
+    redirectOnMount();
+  });
+  const setHeader = () => {
     header.value = {
       title: t('systemRoutes.settings'),
       description: t('screensDescriptions.settings'),
       actions: [],
     };
-    tabs.value = useSettingsRoutes({ localePath, t });
+  };
+
+  const mustRedirectOnMount = () => {
+    const currentRoute = useRoute();
+    const getRouteBaseName = useRouteBaseName();
+    const baseName = getRouteBaseName(currentRoute);
+    return baseName.split('-')?.at(-1) === 'settings';
+  };
+
+  const redirectOnMount = () => {
     navigateTo(tabs.value?.at(0)?.to);
     initTab.value = 1;
-  });
+  };
 </script>
