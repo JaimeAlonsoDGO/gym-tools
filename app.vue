@@ -3,7 +3,10 @@
     class="font-roboto text-gray-800 dark:text-gray-100"
     :class="{ dark: isDarkMode }"
   >
-    <NuxtPage class="font-roboto text-gray-800 dark:text-gray-100" />
+    <NuxtPage
+      class="font-roboto text-gray-800 dark:text-gray-100"
+      :class="{ dark: isDarkMode }"
+    />
   </NuxtLayout>
 </template>
 <script setup>

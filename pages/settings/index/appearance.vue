@@ -3,9 +3,7 @@
     <p class="font-vera font-medium mb-[16px]">
       {{ $t('appearance.language') }}
     </p>
-    <section
-      class="flex items-center gap-[16px] pb-[16px] mb-[16px] border-b-2 border-gray-200"
-    >
+    <section class="radio-section border-b-gray-100 dark:border-b-gray-500">
       <AppInputRadio
         v-for="option in languageOptions"
         :key="option.id"
@@ -20,9 +18,7 @@
     <p class="font-vera font-medium mb-[16px]">
       {{ $t('appearance.appearance') }}
     </p>
-    <section
-      class="flex items-center gap-[16px] pb-[16px] mb-[16px] border-b-2 border-gray-200"
-    >
+    <section class="radio-section border-b-gray-100 dark:border-b-gray-500">
       <AppInputRadio
         v-for="option in themeOptions"
         :key="option.id"
@@ -142,3 +138,8 @@
     return storeTheme || lsTheme || systemTheme;
   };
 </script>
+<style scoped>
+  .radio-section {
+    @apply flex items-center gap-[16px] pb-[16px] mb-[16px] border-b-2;
+  }
+</style>
