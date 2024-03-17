@@ -18,7 +18,7 @@
   </component>
 </template>
 <script setup>
-  import { computed, defineEmits } from 'vue';
+  import { computed } from 'vue';
   const props = defineProps({
     id: {
       type: [String, Number],

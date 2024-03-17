@@ -3,7 +3,7 @@
     <slot />
     <div
       v-show="show"
-      class="absolute top-full right-0 bg-white p-[8px] border border-gray-100"
+      class="absolute top-full right-0 bg-white dark:bg-background-light p-[8px] border border-gray-100 dark:border-gray-500"
     >
       <slot name="dropdown">
         <AppDropdownItem v-for="item in items" :key="item.name" v-bind="item" />

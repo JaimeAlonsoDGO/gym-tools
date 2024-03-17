@@ -38,4 +38,8 @@ export default {
     es: 'Español',
     en: 'Inglés',
   },
+  themes: {
+    light: 'Claro',
+    dark: 'Oscuro',
+  },
 };

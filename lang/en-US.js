@@ -41,4 +41,8 @@ export default {
     en: 'English',
     es: 'Español',
   },
+  themes: {
+    light: 'Light',
+    dark: 'Dark',
+  },
 };

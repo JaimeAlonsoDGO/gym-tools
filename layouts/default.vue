@@ -1,8 +1,8 @@
 <template>
-  <div class="h-screen flex bg-gray-100">
-    <AppSidebar class="bg-white" />
+  <div class="h-screen flex bg-gray-100 dark:bg-background-light">
+    <AppSidebar class="bg-white dark:bg-background-dark" />
     <div class="flex-grow h-screen">
-      <AppHeader class="bg-white" />
+      <AppHeader class="bg-white dark:bg-background-dark" />
       <slot />
     </div>
   </div>

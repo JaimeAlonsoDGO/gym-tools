@@ -6,7 +6,7 @@
     }"
   >
     <div
-      class="flex items-center justify-center gap-[8px] text-amber-500 font-vera font-bold pb-[24px] border-b-2"
+      class="flex items-center justify-center gap-[8px] text-amber-500 font-vera font-bold pb-[24px] border-b-2 border-b-gray-100 dark:border-b-gray-500"
     >
       <p v-show="!closed">
         {{ $t('app.appName') }}
@@ -109,7 +109,7 @@
 </script>
 <style scoped>
   .main-container {
-    @apply py-[24px] px-[16px] border-r-[2px] border-gray-300 h-screen flex flex-col justify-between w-[240px];
+    @apply py-[24px] px-[16px] border-r-[2px] border-gray-100 dark:border-gray-500 h-screen flex flex-col justify-between w-[240px];
   }
   .main-container.closed {
     @apply w-[80px];

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-b-[2px] p-[20px] font-vera flex items-center justify-between"
+    class="border-b-[2px] border-b-gray-100 dark:border-b-gray-500 p-[20px] font-vera flex items-center justify-between"
   >
     <div class="font-vera">
       <p class="text-[10px]">{{ $t('header.title') }}</p>
