@@ -50,6 +50,10 @@ export default defineNuxtConfig({
         en: '/',
         es: '/',
       },
+      users: {
+        en: '/users',
+        es: '/usuarios',
+      },
       settings: {
         en: '/settings',
         es: '/configuracion',
@@ -70,4 +74,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  plugins: ['~/plugins/click-outside.js'],
 });
