@@ -1,5 +1,5 @@
 <template>
-  <span v-if="svg" v-html="svg" />
+  <div v-if="svg" v-html="svg" />
 </template>
 <script setup>
   import { onMounted } from 'vue';
