@@ -1,62 +1,79 @@
 <template>
-  <table class="app-dt border-gray-100 dark:border-gray-500">
-    <thead
-      class="app-dt-head border-b border-b-gray-100 dark:border-b-gray-500"
-    >
-      <tr class="app-dt-head-tr">
-        <th v-if="actions.length">Acciones</th>
-        <th
-          class="app-dt-th"
-          :class="{
-            sortable: !column?.props?.no_sortable,
-          }"
-          v-for="column in columns"
-          :key="column.key"
-          v-bind="column?.props || {}"
-          v-text="column.text"
-          @click="onSort(column.key)"
+  <div>
+    <slot name="top">
+      <div class="mb-[16px]">
+        <AppInput
+          v-if="searchable"
+          v-model="searchTerm"
+          class="w-[30%]"
+          placeholder="Buscar"
         />
-      </tr>
-    </thead>
-    <tbody class="app-dt-body">
-      <tr
-        class="app-dt-body-tr odd:bg-gray-100 dark:odd:bg-background-light"
-        v-for="row in sortedData"
-        :key="row[rowId]"
+      </div>
+    </slot>
+    <table class="app-dt border-gray-100 dark:border-gray-500">
+      <thead
+        class="app-dt-head border-b border-b-gray-100 dark:border-b-gray-500"
       >
-        <td>
-          <slot name="actions">
-            <div class="flex items-center justify-center">
-              <AppDropdown
-                v-if="actions.length"
-                class="actions-dropdown"
-                :items="actions"
-                clickable
-              >
-                <AppIcon
-                  name="menu"
-                  class="actions-dropdown-icon w-[24px] h-[24px]"
-                />
-              </AppDropdown>
-            </div>
-          </slot>
-        </td>
-        <td class="app-dt-body-td" v-for="column in columns" :key="column.key">
-          <slot
-            :name="`${column.key}`"
-            v-bind="{ value: row[column.key], row }"
+        <tr class="app-dt-head-tr">
+          <th v-if="actions.length">Acciones</th>
+          <th
+            class="app-dt-th"
+            :class="{
+              sortable: !column?.props?.no_sortable,
+            }"
+            v-for="column in columns"
+            :key="column.key"
+            v-bind="column?.props || {}"
+            v-text="column.text"
+            @click="onSort(column.key)"
+          />
+        </tr>
+      </thead>
+      <tbody class="app-dt-body">
+        <tr
+          class="app-dt-body-tr odd:bg-gray-100 dark:odd:bg-background-light"
+          v-for="row in sortedData"
+          :key="row[rowId]"
+        >
+          <td>
+            <slot name="actions">
+              <div class="flex items-center justify-center">
+                <AppDropdown
+                  v-if="actions.length"
+                  class="actions-dropdown"
+                  :items="actions"
+                  clickable
+                >
+                  <AppIcon
+                    name="menu"
+                    class="actions-dropdown-icon w-[24px] h-[24px]"
+                  />
+                </AppDropdown>
+              </div>
+            </slot>
+          </td>
+          <td
+            class="app-dt-body-td"
+            v-for="column in columns"
+            :key="column.key"
           >
-            {{ row[column.key] }}
-          </slot>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            <slot
+              :name="`${column.key}`"
+              v-bind="{ value: row[column.key], row }"
+            >
+              {{ row[column.key] }}
+            </slot>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <script setup>
   import { ref, computed, onMounted } from 'vue';
   import AppIcon from '~/components/atoms/icons/AppIcon.vue';
   import AppDropdown from '~/components/atoms/dropdowns/AppDropdown.vue';
+  import AppInput from '~/components/atoms/inputs/AppInput.vue';
 
   const props = defineProps({
     columns: {
@@ -85,9 +102,14 @@
       default: () => [],
       // [{name: String, icon: Object, on: Object}]
     },
+    searchable: {
+      type: Boolean,
+      default: false,
+    },
   });
 
   const sortTo = ref('asc');
+  const searchTerm = ref('');
   const internSortByKey = ref('');
   const emit = defineEmits(['sort']);
 
@@ -105,20 +127,28 @@
     emit('sort', { key, asc: sortTo.value });
   };
 
+  const filteredBySearch = computed(() => {
+    if (!searchTerm.value || !props.searchable) return props.data;
+    return props.data.filter((row) =>
+      Object.values(row).some((value) =>
+        String(value).toLowerCase().includes(searchTerm.value.toLowerCase())
+      )
+    );
+  });
+
   const sortedData = computed(() => {
-    // return props.data;
-    if (!props.basicSort) return props.data;
+    if (!props.basicSort) return filteredBySearch.value;
 
     const sortType =
       typeof props.data?.at(0)?.[internSortByKey.value] || 'string';
 
-    if (!sortType) return props.data;
+    if (!sortType) return filteredBySearch.value;
 
     const sortFn = sortFnMapping?.[sortTo.value]?.[sortType] || null;
 
-    if (!sortFn) return props.data;
+    if (!sortFn) return filteredBySearch.value;
 
-    return props.data.sort(sortFn);
+    return filteredBySearch.value.sort(sortFn);
   });
 
   const sortFnMapping = {
