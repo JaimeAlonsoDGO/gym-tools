@@ -8,11 +8,16 @@ export default {
     './app.vue',
     './error.vue',
   ],
+  darkMode: 'selector',
   theme: {
     extend: {
       fontFamily: {
         roboto: 'Roboto',
         vera: 'Vera',
+      },
+      colors: {
+        'background-light': '#262529',
+        'background-dark': '#1d1c20',
       },
     },
   },

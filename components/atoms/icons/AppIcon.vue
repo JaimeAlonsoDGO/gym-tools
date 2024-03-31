@@ -1,5 +1,5 @@
 <template>
-  <span v-if="svg" v-html="svg" />
+  <div v-if="svg" v-html="svg" />
 </template>
 <script setup>
   import { onMounted } from 'vue';
@@ -27,7 +27,6 @@
         import.meta.glob('~/assets/icons/*/*.svg', { as: 'raw' })
       ).map(([key, value]) => {
         const filename = key.split('/').slice(-2).join('-').split('.')?.at(0);
-        console.log('filename: ', filename);
         return [filename, value];
       })
     );
