@@ -1,6 +1,6 @@
 <template>
   <AppWorkAreaFrame :tabs="[]" :header="header">
-    <AppDataTable :columns="columns" :data="data" :actions="actions">
+    <AppDataTable :columns="columns" :data="data" :actions="actions" searchable>
       <template #full_name="{ value }"> {{ value }} </template>
     </AppDataTable>
   </AppWorkAreaFrame>
