@@ -10,6 +10,15 @@ export const useSystemRoutes = ({ localePath, t }) => {
       avatarMenu: false,
     },
     {
+      text: t('systemRoutes.users'),
+      icon: {
+        name: 'house',
+      },
+      to: localePath('users'),
+      sidebar: true,
+      avatarMenu: false,
+    },
+    {
       text: t('systemRoutes.settings'),
       icon: {
         name: 'config',

@@ -17,6 +17,7 @@ export default {
   },
   systemRoutes: {
     index: 'Inicio',
+    users: 'Usuarios',
     settings: 'Configuraciones',
   },
   settingsRoutes: {
@@ -25,6 +26,7 @@ export default {
   },
   screensDescriptions: {
     settings: 'Configura y personaliza la aplicación.',
+    users: 'Administra tus usuarios.',
   },
   appearance: {
     appearance: 'Aspecto',
